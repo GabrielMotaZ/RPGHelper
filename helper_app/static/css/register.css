@@ -5,6 +5,7 @@
     color: #323232;
     border: none;
 }
+
 #password {
     background: white;
 }
@@ -50,7 +51,6 @@ input:focus {
     border-bottom: 2px solid #08558b;
 }
 
-
 input[type="submit"] {
     text-align: center;
     text-transform: uppercase;
@@ -68,13 +68,16 @@ input[type="submit"]:hover {
     background-color: #1b223c;
     transition: .2s;
 }
+
 body {
     background-image: url('../images/background.jpg');
     background-size: cover;
 }
+
 li {
     list-style-type: none;
 }
+
 #login {
     color: blue;
 }
