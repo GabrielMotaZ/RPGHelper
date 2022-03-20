@@ -8,12 +8,6 @@ const chatSocket = new WebSocket(
     + '/'
 );
 
-chatSocket.onmessage = function(e) {
-    const data = JSON.parse(e.data);
-    document.querySelector('#chat-log').value += (' ' + data.message + '\n\n');
-    scroll_down();
-};
-
 chatSocket.onclose = function(e) {
     console.error('Chat socket closed unexpectedly');
 };
@@ -28,10 +22,21 @@ document.querySelector('#chat-message-input').onkeyup = function(e) {
 document.querySelector('#chat-message-submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
-    chatSocket.send(JSON.stringify({
-        'message': message
-    }));
+    const characterName = document.getElementById('character').value;
+    const stringSend = JSON.stringify({
+        characterName: characterName,
+        message: message
+    });
+    //console.log(stringSend)
+    chatSocket.send(stringSend);
     messageInputDom.value = '';
+    scroll_down();
+};
+
+chatSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    console.log(e);
+    document.querySelector('#chat-log').value += (data.characterName + '\n ' + data.message + '\n\n');
     scroll_down();
 };
 

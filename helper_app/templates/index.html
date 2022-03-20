@@ -17,6 +17,7 @@
             {% for skill in skills %}
             <li>{{ skill.skill_name }}</li>
             <button id="{{ skill.skill_name }}" value="{{ skill.results }}" onclick="send_skill_results(this.id, this.value)">Rolar</button>
+            <input type="hidden" name="character" id="character" value="{{ character.character_name }}">
             {% endfor %}
         </ul>
         <br>
