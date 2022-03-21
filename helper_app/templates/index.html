@@ -22,6 +22,9 @@
         </ul>
         <br>
         <button id="toggle">Editar</button>
+        <br><br>
+        <a href="{% url 'select' %}"><button>Selecionar personagem</button></a>
+        <a href="{% url 'logout' %}"><button>logout</button></a>
         <div id="hiddenDiv" style="display: none;">
             <ul>
                 {% for skill in skills %}
