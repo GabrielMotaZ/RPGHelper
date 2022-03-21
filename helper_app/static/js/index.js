@@ -89,12 +89,12 @@ function send_skill_results(name, result) {
             if (resultList[i].includes('+')) {
                 resultList[i] = resultList[i].replace('+','');
                 finalResult += parseInt(resultList[i]);
-                finalAnswer += '+' + resultList[i] + '\n';
+                finalAnswer += ' +' + resultList[i] + '\n';
             }
             if (resultList[i].includes('-')) {
                 resultList[i] = resultList[i].replace('-','');
                 finalResult -= parseInt(resultList[i]);
-                finalAnswer += '-' + resultList[i] + '\n';
+                finalAnswer += ' -' + resultList[i] + '\n';
             }
         } else {
             finalAnswer = 'error in ' + (i+1) + ' place in results';
@@ -103,8 +103,10 @@ function send_skill_results(name, result) {
     }
     console.log(resultList);
     finalAnswer += 'final result for ' + name + ', ' + result + ': ' + finalResult;
+    const characterName = document.getElementById('character').value;
     chatSocket.send(JSON.stringify({
-        'message': finalAnswer
+        'message': finalAnswer,
+        'characterName': characterName
     }));
     scroll_down();
 }
