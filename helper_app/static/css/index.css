@@ -10,3 +10,12 @@
   display: table;
   clear: both;
 }
+
+body {
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+}
+
+#chat-log {
+  width: 500px;
+}
