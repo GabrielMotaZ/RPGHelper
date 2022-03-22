@@ -1,0 +1,11 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+}
+
+.centralize {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 20%;
+}

@@ -45,7 +45,7 @@ def register(request):
             user.save()
             account = Accounts(username=form.cleaned_data['username'])
             account.save()
-            return HttpResponse('registro realizado com sucesso')
+            return render(request, 'registerComplete.html', {})
         else:
             return HttpResponse('nome invalido')
     else:
