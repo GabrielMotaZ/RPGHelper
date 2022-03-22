@@ -12,7 +12,7 @@ def room(request):
     if request.method == 'POST':
         account = get_object_or_404(Accounts, username=request.user.username)
         character = account.characters_set.get(character_name=request.POST['choice'])
-        room_name = request.POST['room-name']
+        room_name = request.POST['room-name'].strip()
         request.session['room_name'] = room_name
         request.session['choice'] = request.POST['choice']
         return render(request, 'index.html', {'room_name': room_name, 'character': character, 'skills': character.skills_set.all()})
