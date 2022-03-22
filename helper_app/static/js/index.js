@@ -22,7 +22,7 @@ document.querySelector('#chat-message-input').onkeyup = function(e) {
 document.querySelector('#chat-message-submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
-    const characterName = document.getElementById('character').value;
+    const characterName = document.getElementById('static_character_name').value;
     const stringSend = JSON.stringify({
         characterName: characterName,
         message: message
@@ -103,7 +103,7 @@ function send_skill_results(name, result) {
     }
     console.log(resultList);
     finalAnswer += 'final result for ' + name + ', ' + result + ': ' + finalResult;
-    const characterName = document.getElementById('character').value;
+    const characterName = document.getElementById('static_character_name').value;
     chatSocket.send(JSON.stringify({
         'message': finalAnswer,
         'characterName': characterName

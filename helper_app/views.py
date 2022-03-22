@@ -62,7 +62,7 @@ def test(request):
 
 def editSkill(request):
     if request.method == 'POST':
-        characterName = request.POST['character']
+        characterName = request.POST['static_character_name']
         toEditSkill = request.POST['skill']
         newResult = request.POST['new_result']
         account = get_object_or_404(Accounts, username=request.user.username)
@@ -77,7 +77,7 @@ def editSkill(request):
 def createSkill(request):
     if request.method == 'POST':
         account = get_object_or_404(Accounts, username=request.user.username)
-        characterName = account.characters_set.get(character_name=request.POST['character'])
+        characterName = account.characters_set.get(character_name=request.POST['static_character_name'])
         newSkillName = request.POST['skill_name']
         newResult = request.POST['results']
         try:
@@ -95,7 +95,7 @@ def createSkill(request):
 
 def deleteSkill(request):
     if request.method == 'POST':
-        characterName = request.POST['character']
+        characterName = request.POST['static_character_name']
         toEditSkill = request.POST['skill']
         account = get_object_or_404(Accounts, username=request.user.username)
         character = account.characters_set.get(character_name=characterName)

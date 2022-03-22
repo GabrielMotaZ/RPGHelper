@@ -13,11 +13,12 @@
 <div class="row">
     <div class="column">
         <h2>Nome do personagem: {{ character.character_name }}</h2>
+        <input type="hidden" id="static_character_name" value="{{ character.character_name }}">
         <ul>
             {% for skill in skills %}
             <li>{{ skill.skill_name }}</li>
             <button id="{{ skill.skill_name }}" value="{{ skill.results }}" onclick="send_skill_results(this.id, this.value)">Rolar</button>
-            <input type="hidden" name="character" id="character" value="{{ character.character_name }}">
+            <input type="hidden" name="static_character_name" id="static_character_name" value="{{ character.character_name }}">
             {% endfor %}
         </ul>
         <br>
@@ -32,14 +33,14 @@
                         <form action="{% url 'editSkill' %}" method="post">
                             {% csrf_token %}
                             <p>{{ skill.skill_name }}</p>
-                            <input type="hidden" name="character" id="character" value="{{ character.character_name }}">
+                            <input type="hidden" name="static_character_name" id="static_character_name" value="{{ character.character_name }}">
                             <input type="hidden" name="skill" value="{{ skill.skill_name }}">
                             <input type="text" name="new_result" id="new_result" placeholder="{{ skill.results }}">
                             <input type="submit" value="salvar">
                         </form>
                         <form action="{% url 'deleteSkill' %}" method="post">
                             {% csrf_token %}
-                            <input type="hidden" name="character" id="character" value="{{ character.character_name }}">
+                            <input type="hidden" name="static_character_name" id="static_character_name" value="{{ character.character_name }}">
                             <input type="hidden" name="skill" value="{{ skill.skill_name }}">
                             <input type="submit" value="deletar skill">
                         </form>
@@ -49,7 +50,7 @@
                     <form action="{% url 'createSkill' %}" method="post">
                         {% csrf_token %}
                         <p>criar nova skill</p>
-                        <input type="hidden" name="character" value="{{ character.character_name }}">
+                        <input type="hidden" name="static_character_name" id="static_character_name" value="{{ character.character_name }}">
                         <input type="text" name="skill_name" id="skill_name" placeholder="nome da skill">
                         <input type="text" name="results" id="results" placeholder="valores">
                         <input type="submit" value="criar">
