@@ -9,8 +9,7 @@ form {
 }
 
 label, input {
-    display: block;
-    text-align: left;
+    text-align: center;
 }
 
 label {
@@ -47,6 +46,13 @@ body {
     background-size: cover;
 }
 
+.centralized_div {
+    margin: 50px 0 0 0;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
 #char_container {
     background-color: white;
     width: 400px;
@@ -73,10 +79,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #1b223c;
     transition: .2s;
-}
-
-input[type="radio"] {
-    float: left;
 }
 
 #nick {

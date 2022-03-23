@@ -9,29 +9,31 @@
     <title>Document</title>
 </head>
 <body>
-    {% if charList %}
-    <form action="{% url 'room' %}" method="post">
-        {% csrf_token %}
-        <label for="room-name">Sala:</label>
-        <input type="text" name="room-name" id="room-name" placeholder="Nome da sala">
-        <br>
-        {% for character in charList %}
-            <input type="radio" name="choice" id="{{ character.character_name }}" value="{{ character.character_name }}">
-            <label for="{{ character.character_name }}">{{ character.character_name }}</label>
-            <br>
-        {% endfor %}
-        <input type="submit" value="Entrar">
-    </form>
-    {% endif %}
-
-    <button id="toggle">criar personagem</button>
-    <a href="{% url 'logout' %}"><button>logout</button></a>
-    <div id="hiddenDiv" style="display: none;">
-        <form action="{% url 'createChar' %}" method="post">
+    <div class="centralized_div">
+        {% if charList %}
+        <form action="{% url 'room' %}" method="post">
             {% csrf_token %}
-            <input type="text" id="charName" name="charName" placeholder="Nome do personagem">
-            <input type="submit" value="criar">
+            <label for="room-name">Sala:</label><br>
+            <input type="text" name="room-name" id="room-name" placeholder="Nome da sala">
+            <br>
+            {% for character in charList %}
+                <input type="radio" name="choice" id="{{ character.character_name }}" value="{{ character.character_name }}">
+                <label for="{{ character.character_name }}">{{ character.character_name }}</label>
+                <br>
+            {% endfor %}
+            <input type="submit" value="Entrar">
         </form>
+        {% endif %}
+
+        <button id="toggle">criar personagem</button>
+        <a href="{% url 'logout' %}"><button>logout</button></a>
+        <div id="hiddenDiv" style="display: none;">
+            <form action="{% url 'createChar' %}" method="post">
+                {% csrf_token %}
+                <input type="text" id="charName" name="charName" placeholder="Nome do personagem">
+                <input type="submit" value="criar">
+            </form>
+        </div>
     </div>
     <script src="{% static 'js/charSelect.js' %}"></script>
 </body>
