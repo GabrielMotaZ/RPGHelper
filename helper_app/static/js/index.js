@@ -35,7 +35,6 @@ document.querySelector('#chat-message-submit').onclick = function(e) {
 
 chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    console.log(e);
     document.querySelector('#chat-log').value += (data.characterName + '\n ' + data.message + '\n\n');
     scroll_down();
 };
