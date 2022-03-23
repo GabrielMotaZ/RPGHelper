@@ -27,7 +27,6 @@ document.querySelector('#chat-message-submit').onclick = function(e) {
         characterName: characterName,
         message: message
     });
-    //console.log(stringSend)
     chatSocket.send(stringSend);
     messageInputDom.value = '';
     scroll_down();
@@ -64,7 +63,6 @@ function send_skill_results(name, result) {
     for (i=0; i<resultList.length; i++) {
         resultList[i] = '+' + resultList[i];
     }
-    console.log(resultList)
     for (i=0; i<resultList.length; i++) {
         if (resultList[i].includes('-')) {
             resultList[i] = resultList[i].slit('-');
@@ -74,14 +72,12 @@ function send_skill_results(name, result) {
             }
         }
     }
-    console.log(resultList);
     for (i=0; i<resultList.length; i++) {
         if (resultList[i].includes('d')) {
             resultList[i] = resultList[i].split('d');
             for (j=0; j<parseInt(resultList[i][0]); j++) {
                 var num = Math.floor(Math.random() * parseInt(resultList[i][1])) + 1;
                 finalResult += num;
-                console.log(result)
                 finalAnswer += '1d' + resultList[i][1] + ' = ' + num + '\n';
             }
         } else if (resultList[i].includes('+') || resultList[i].includes('-')) {
@@ -100,7 +96,6 @@ function send_skill_results(name, result) {
             break;
         }
     }
-    console.log(resultList);
     finalAnswer += 'final result for ' + name + ', ' + result + ': ' + finalResult;
     const characterName = document.getElementById('static_character_name').value;
     chatSocket.send(JSON.stringify({
