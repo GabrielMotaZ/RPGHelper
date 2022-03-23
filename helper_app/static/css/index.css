@@ -11,6 +11,10 @@
   clear: both;
 }
 
+ul {
+  padding-left: 0;
+}
+
 body {
   background-image: url('../images/background.jpg');
   background-size: cover;
