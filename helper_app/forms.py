@@ -1,10 +1,10 @@
 from django.forms import ModelForm, PasswordInput
-from helper_app.models import Accounts, Skills
+from helper_app.models import Skills
 from django.contrib.auth.models import User as Usermodel
 
 class UserForm(ModelForm):
     class Meta:
-        model = Accounts
+        model = Usermodel
         fields = ('username', 'password')
         widgets = {
             'password': PasswordInput(),
