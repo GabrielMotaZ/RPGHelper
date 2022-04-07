@@ -23,3 +23,11 @@ body {
 #chat-log {
   width: 500px;
 }
+
+#container {
+  width: 100%;
+  height: 500px;
+  border: blue;
+  overflow: hidden;
+
+}

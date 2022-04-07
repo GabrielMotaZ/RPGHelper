@@ -109,3 +109,11 @@ function send_skill_results(name, result) {
 function scroll_down(){
     document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
 }
+
+
+$(function(){
+    var firstElement = $("#container").width() - $(window).width();
+    var secondElement = $("#container").height() - $(window).height();
+    $( "#draggable" ).draggable({ containment: [firstElement, secondElement, 0, 0] });
+    
+  });  
