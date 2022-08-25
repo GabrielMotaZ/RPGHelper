@@ -16,3 +16,10 @@ class Skills(models.Model):
     results = models.CharField(max_length=50)
     def __str__(self):
         return self.skill_name
+
+class Rooms(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=20)
+    expirationDate = models.DateTimeField()
+    def __str__(self):
+        return self.name
