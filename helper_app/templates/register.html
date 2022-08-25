@@ -9,6 +9,9 @@
     <title>Document</title>
 </head>
 <body>
+    {% if error %}
+    <p id="error-message">{{ error }}</p>
+    {% endif %}
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <ul>

@@ -1,6 +1,7 @@
 from django.forms import ModelForm, PasswordInput
 from helper_app.models import Skills
 from django.contrib.auth.models import User as Usermodel
+from django import forms
 
 class UserForm(ModelForm):
     class Meta:

@@ -7,6 +7,7 @@ from django.contrib.auth import login as login_auth
 from django.contrib.auth import logout as logout_account
 from django.contrib.auth.models import User
 from django.utils import timezone
+from datetime import timedelta
 
 # Create your views here.
 
@@ -35,7 +36,7 @@ def register(request):
             user.save()
             return render(request, 'registerComplete.html', {})
         else:
-            return HttpResponse('nome invalido')
+            return render(request, 'register.html', {'error': 'Não foi possível criar esse registro, verifique os campos e não utilize espaços'})
     else:
         return render(request, 'register.html', {})
 
@@ -94,12 +95,16 @@ def createChar(request):
     if request.method == 'POST':
         account = get_object_or_404(User, username=request.user.username)
         characterName = request.POST['charName']
+        if characterName == "":
+            return select(request,{'error': 'Escolha algum nome para o personagem'})
         char = Characters.objects.create(owner=account, character_name=characterName)
         char.save()
         return select(request)
 
 def enterRoom(request):
     if request.method == 'POST':
+        if 'choice' not in request.POST:
+            return render(request, 'charSelect.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Por favor, escolha um personagem'})    
         account = get_object_or_404(User, username=request.user.username)
         character = account.characters_set.get(character_name=request.POST['choice'])
         room_name = request.POST['room-name'].strip()
@@ -109,22 +114,33 @@ def enterRoom(request):
             request.session['choice'] = request.POST['choice']
             return render(request, 'index.html', {'room_name': room_name, 'character': character, 'skills': character.skills_set.all()})
         else:
-            return render(request, 'charSelect.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Room was not found with this name and password'})
+            return render(request, 'charSelect.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Não foi possível encontrar uma sala com esse nome e senha'})
 
 def createRoom(request):
     if request.method == 'POST':
-        account = get_object_or_404(User, username=request.user.username)
-        character = account.characters_set.get(character_name=request.POST['choice'])
         room_name = request.POST['room-name'].strip()
+        room_password = request.POST['room-password']
+
+        if room_name == "" or room_password == "":
+            return render(request, 'createRoom.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Por favor, preencha todos os campos'})
+        elif " " in room_name or " " in room_password:
+            return render(request, 'createRoom.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Por favor, não utilizar espaços nos campos'})
+        
+        room = False
+        
         try:
             room = Rooms.objects.get(name=room_name)
         except:
             pass
+        
         if room == False or timezone.now() > room.expirationDate:
             Rooms.objects.update_or_create(
                 name=room_name,
-                defaults={'password':request.POST['room-password'],
-                'expirationDate':timezone.now()})
-            return render(request, 'index.html', {'room_name': room_name, 'character': character, 'skills': character.skills_set.all()})
+                defaults={'password':room_password,
+                'expirationDate':timezone.now() + timedelta(days=1)})
+            return render(request, 'charSelect.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username))})
         else:
-            return render(request, 'charSelect.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'This room is already being used'})
+            return render(request, 'createRoom.html', {'charList': Characters.objects.filter(owner=User.objects.all().get(username=request.user.username)),'error':'Esta sala já está sendo utilizada'})
+    
+    elif request.method == 'GET':
+        return render(request, 'createRoom.html')

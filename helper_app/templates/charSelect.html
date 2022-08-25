@@ -10,11 +10,16 @@
 </head>
 <body>
     <div class="centralized_div">
+        {% if error %}
+        <p id="error-message">{{ error }}</p>
+        {% endif %}
         {% if charList %}
-        <form action="{% url 'room' %}" method="post">
+        <form action="{% url 'enterRoom' %}" method="post">
             {% csrf_token %}
             <label for="room-name">Sala:</label><br>
             <input type="text" name="room-name" id="room-name" placeholder="Nome da sala">
+            <br>
+            <input type="password" name="room-password" id="room-password" placeholder="Senha da sala">
             <br>
             {% for character in charList %}
                 <input type="radio" name="choice" id="{{ character.character_name }}" value="{{ character.character_name }}">
@@ -25,7 +30,8 @@
         </form>
         {% endif %}
 
-        <button id="toggle">criar personagem</button>
+        <a href="{% url 'createRoom' %}"><button>Criar sala</button></a>
+        <button id="toggle">Criar personagem</button>
         <a href="{% url 'logout' %}"><button>logout</button></a>
         <div id="hiddenDiv" style="display: none;">
             <form action="{% url 'createChar' %}" method="post">
