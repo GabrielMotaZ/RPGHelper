@@ -1,93 +1,68 @@
-/*geral*/
-* {
-    box-sizing: border-box;
-    border: none;
+#login_area{
+    position: relative;
+    left: 325px;
+    top: 115px;
+    border-radius: 15px;
+    width: 1000px;
+    height: 600px;
+    background-color: #c90a0b;
 }
 
-#password {
-    background: white;
-}
-
-#username {
-    background: white;
-}
-
-#login_container{
-    background-color: white;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px 30px;
-    margin-top: 10vh;
-    border-radius: 10px;
-}
-
-form {
-    margin-top: 30px;
-    margin-bottom: 40px;
-}
-
-label, input {
-    display: block;
-    width: 100%;
-    text-align: left;
-}
-
-button {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #008CBA;
-  }
-  
-button:hover {
-  background-color: #008CBA;
-  color: white;
-}
-
-label {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-input {
-    border-bottom: 2px solid #323232;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-input:focus {
-    border-bottom: 2px solid #08558b;
-}
-
-#create_account {
-    font-size: 19px;
-    color: blue;
-}
-
-link {
-    font-size: 19px;
-}
-
-input[type="submit"] {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
+#login_buttons{
+    position: relative;
+    top: 200px;
+    right: 100px;
+    left: 10px;
+    margin: 5px;
+    border-radius: 40px;
     height: 40px;
-    border-radius: 20px;
-    margin-top: 30px;
-    color: white;
-    background-color: #08558b;
-    cursor: pointer;
+    width: 500px;
+    background-color: #171f25;
+    font-weight: bold;
 }
 
-input[type="submit"]:hover {
-    background-color: #1b223c;
-    transition: .2s;
+#login_buttons:hover{
+    background-color: #090f13;
 }
 
-body {
-    background-image: url('../images/background.jpg');
-    background-size: cover;
+#login_info{
+    position: relative;
+    left: 10px; 
+    top: 200px;
+    margin: 5px;
+    width: 475px;
+    height: 40px;
+    border-radius: 40px;
+    padding-left: 25px;
 }
+
+#login_error{
+    font-weight: bold;
+}
+
+#info_area{
+    position: relative;
+    left: 860px;
+    bottom: 515px;
+    background-color: #752e2b;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 600px;
+    width: 500px;
+}
+
+#subscribe_text{
+    position: relative;
+    top: 260px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#footer{
+    position: relative;
+    background-color: #171f25;
+    width: 100%;
+    height: 150px;
+}
+
