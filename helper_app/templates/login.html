@@ -6,18 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <title>Document</title>
+    <title>Login</title>
 </head>
-<body>
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
-    <form action="{% url 'validate' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" id="username">
-        <input type="password" name="password" id="password">
-        <input type="submit" value="login">
-    </form>
-    <a href="{% url 'register' %}"><button>Cadastrar</button></a>
+<body bgcolor="#f2eab7">
+    <div id="login_area">
+        {% if error %}
+            <p style="color: #f2eab7" id="login_error">{{ error }}</p>
+        {% endif %}
+        <form action="{% url 'validate' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" id="login_info">
+            <input type="password" name="password" id="login_info">
+            <input style="color: #f2eab7" type="submit" value="Entrar" id="login_buttons">
+        </form>
+        <a href="{% url 'register' %}"><button  style="color: #f2eab7" id="login_buttons">Cadastrar</button></a>
+    </div>
+    <div id="info_area">
+        <p style="color: #f2eab7" id="subscribe_text"> Inscrever-se </p>
+    </div>
+    <footer class="container-fluid" id="footer">
+            <p style="color: #f2eab7" id="footer_text">Contate-nos</p>
+    </footer>
 </body>
 </html>
