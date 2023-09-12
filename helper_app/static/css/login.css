@@ -1,3 +1,22 @@
+* {
+    box-sizing: border-box;
+    border: none;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background-image: url('../images/background.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #login_area{
     position: relative;
     left: 325px;
